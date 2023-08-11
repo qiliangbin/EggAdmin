@@ -59,18 +59,18 @@ class UserService extends Service {
       return this.setStatus(false, '账号不存在')
     }
   }
-  // 校验密码
-  async checkPW({ name, password }) {
+  // 登录
+  async login({ name, password }) {
     const isRepeat = await this._findOne('User', 'name', name)
     if(isRepeat) {
       if(isRepeat.password !== password) {
         return this.setStatus(false, '密码不正确')
       }
+      return this.setStatus(true, isRepeat)
     } else {
       return this.setStatus(false, '账号不存在')
     }
   }
-
   setStatus(status, msg) {
     return {status, msg}
   }
