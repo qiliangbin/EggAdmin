@@ -8,7 +8,7 @@ module.exports = function(app) {
   router.post('/user/logoff', controller.user.logOff)
   router.post('/user/edit', controller.user.edit) // 编辑账号
   router.post('/user/modifyPassword', controller.user.modifyPassword) // 修改密码
-  router.post('/user/updateMyself', controller.user.updateMyself)
+  router.post('/user/updateMyself', jwt, controller.user.updateMyself)
 
   router.get('/user/myself', jwt, controller.user.search) // 获取本人信息
 }
